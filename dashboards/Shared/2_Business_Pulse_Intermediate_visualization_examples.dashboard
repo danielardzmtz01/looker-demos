@@ -1,0 +1,1437 @@
+---
+- dashboard: 2_business_pulse__intermediate_visualization_examples
+  title: 2) Business Pulse - Intermediate visualization examples
+  preferred_viewer: dashboards-next
+  description: ''
+  preferred_slug: lCLlweEWzJ6EdGTgsIHjPB
+  layout: newspaper
+  tabs:
+  - name: ''
+    label: ''
+  elements:
+  - title: Order Items by Status
+    name: Order Items by Status
+    model: intermediate_ecomm
+    explore: intermediate_example_ecommerce
+    type: looker_column
+    fields: [order_items.count, order_items.status, order_items.status_in_order, order_items.validation_status]
+    pivots: [order_items.status_in_order, order_items.status]
+    fill_fields: [order_items.validation_status]
+    sorts: [order_items.status_in_order, order_items.status, order_items.count desc
+        0]
+    limit: 500
+    column_limit: 50
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    trellis: ''
+    stacking: normal
+    limit_displayed_rows: false
+    legend_position: right
+    point_style: circle
+    show_value_labels: true
+    label_density: 25
+    x_axis_scale: auto
+    y_axis_combined: true
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: true
+    show_silhouette: false
+    totals_color: "#80868B"
+    y_axes: [{label: '', orientation: left, series: [{axisId: 1 - Processing - 0|FIELD|Processing
+              - order_items.count, id: 1 - Processing - 0|FIELD|Processing - order_items.count,
+            name: 1 - Processing - Processing}, {axisId: 1x - Cancelled - 1|FIELD|Cancelled
+              - order_items.count, id: 1x - Cancelled - 1|FIELD|Cancelled - order_items.count,
+            name: 1x - Cancelled - Cancelled}, {axisId: 2 - Shipped - 2|FIELD|Shipped
+              - order_items.count, id: 2 - Shipped - 2|FIELD|Shipped - order_items.count,
+            name: 2 - Shipped - Shipped}, {axisId: 3 - Complete - 3|FIELD|Complete
+              - order_items.count, id: 3 - Complete - 3|FIELD|Complete - order_items.count,
+            name: 3 - Complete - Complete}, {axisId: 3x - Complete - 4|FIELD|Returned
+              - order_items.count, id: 3x - Complete - 4|FIELD|Returned - order_items.count,
+            name: 3x - Complete - Returned}], showLabels: false, showValues: false,
+        valueFormat: "#.#,k", unpinAxis: false, tickDensity: default, type: linear}]
+    x_axis_zoom: true
+    y_axis_zoom: true
+    font_size: ''
+    label_value_format: "#.#,k"
+    series_colors:
+      Invalid - 0 - order_items.count: "#80868B"
+      1x - Cancelled - 1|FIELD|Cancelled - order_items.count: "#adc8e8"
+      3 - Complete - 3|FIELD|Complete - order_items.count: "#F9AB00"
+      3x - Complete - 4|FIELD|Returned - order_items.count: "#fae482"
+    totals_rotation: -15
+    show_null_points: false
+    cluster_points: false
+    quadrants_enabled: false
+    quadrant_properties:
+      '0':
+        color: ''
+        label: Quadrant 1
+      '1':
+        color: ''
+        label: Quadrant 2
+      '2':
+        color: ''
+        label: Quadrant 3
+      '3':
+        color: ''
+        label: Quadrant 4
+    custom_quadrant_point_x: 5
+    custom_quadrant_point_y: 5
+    custom_x_column: ''
+    custom_y_column: ''
+    custom_value_label_column: ''
+    value_labels: labels
+    label_type: labPer
+    hidden_fields: []
+    defaults_version: 1
+    hidden_pivots: {}
+    listen:
+      Country: users.country
+      State: users.state
+      Brand: products.brand
+      Category: products.category
+      Date: order_items.created_at_date
+      Department: products.department
+      Product Name: products.name
+    row: 0
+    col: 12
+    width: 12
+    height: 5
+    tab_name: ''
+  - name: " (Copy)"
+    type: text
+    title_text: " (Copy)"
+    body_text: '[{"type":"h1","children":[{"text":"                                     Valid
+      Orders Only Below                                     ","italic":true,"underline":true}],"align":"center"},{"type":"h2","align":"center","children":[{"text":"Top
+      Line Metrics"}],"id":1680192906863},{"type":"h3","align":"center","children":[{"text":"Are
+      we headed in the right direction?"}],"id":1680192906863}]'
+    rich_content_json: '{"format":"slate"}'
+    row: 5
+    col: 0
+    width: 24
+    height: 2
+    tab_name: ''
+  - title: Highest Spending Regions
+    name: Highest Spending Regions
+    model: intermediate_ecomm
+    explore: intermediate_example_ecommerce
+    type: looker_google_map
+    fields: [users.location, order_items.total_sale_price]
+    sorts: [order_items.total_sale_price desc]
+    limit: 5000
+    column_limit: 50
+    hidden_fields: []
+    hidden_points_if_no: []
+    series_labels: {}
+    show_view_names: false
+    map_plot_mode: automagic_heatmap
+    heatmap_gridlines: false
+    heatmap_gridlines_empty: false
+    heatmap_opacity: 0.5
+    show_region_field: true
+    draw_map_labels_above_data: true
+    map_tile_provider: light
+    map_position: custom
+    map_zoom: 1
+    map_pannable: true
+    map_zoomable: true
+    map_marker_type: circle
+    map_marker_icon_name: default
+    map_marker_radius_mode: proportional_value
+    map_marker_units: pixels
+    map_marker_radius_max: 8
+    map_marker_proportional_scale_type: linear
+    map_marker_color_mode: fixed
+    show_legend: true
+    map_value_colors: ["#05206F", lime]
+    quantize_map_value_colors: false
+    reverse_map_value_colors: false
+    map_scale_indicator: 'off'
+    map: world
+    map_projection: ''
+    outer_border_color: ''
+    inner_border_color: ''
+    point_color: ''
+    map_color: ''
+    point_radius: 1
+    hidden_pivots: {}
+    defaults_version: 0
+    listen:
+      Country: users.country
+      State: users.state
+      Brand: products.brand
+      Category: products.category
+      Date: order_items.created_at_date
+      Department: products.department
+      Product Name: products.name
+    row: 7
+    col: 16
+    width: 8
+    height: 7
+    tab_name: ''
+  - title: Total Items
+    name: Total Items
+    model: intermediate_ecomm
+    explore: intermediate_example_ecommerce_validated_orders
+    type: single_value
+    fields: [order_items.count]
+    filters:
+      order_items.validation_status: ''
+    limit: 500
+    column_limit: 50
+    custom_color_enabled: true
+    show_single_value_title: true
+    show_comparison: false
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    defaults_version: 1
+    listen:
+      Country: users.country
+      State: users.state
+      Brand: products.brand
+      Category: products.category
+      Date: order_items.created_at_date
+      Department: products.department
+      Product Name: products.name
+    row: 7
+    col: 7
+    width: 3
+    height: 2
+    tab_name: ''
+  - title: "# of Order Items vs Avg Sale Price Over Time"
+    name: "# of Order Items vs Avg Sale Price Over Time"
+    model: intermediate_ecomm
+    explore: intermediate_example_ecommerce_validated_orders
+    type: looker_line
+    fields: [order_items.created_at_date, order_items.count, order_items.average_sale_price]
+    fill_fields: [order_items.created_at_date]
+    filters:
+      order_items.validation_status: ''
+    sorts: [order_items.created_at_date desc]
+    limit: 5000
+    column_limit: 50
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    trellis: ''
+    stacking: ''
+    limit_displayed_rows: false
+    legend_position: center
+    point_style: none
+    show_value_labels: false
+    label_density: 25
+    x_axis_scale: auto
+    y_axis_combined: true
+    show_null_points: false
+    interpolation: linear
+    y_axes: [{label: "# Items", orientation: left, series: [{axisId: order_items.count,
+            id: order_items.count, name: "# of Order Items"}], showLabels: true, showValues: true,
+        unpinAxis: false, tickDensity: default, tickDensityCustom: 5, type: linear},
+      {label: Avg Price, orientation: right, series: [{axisId: order_items.average_sale_price,
+            id: order_items.average_sale_price, name: Average Sale Price}], showLabels: true,
+        showValues: true, unpinAxis: false, tickDensity: default, tickDensityCustom: 5,
+        type: linear}]
+    x_axis_zoom: true
+    y_axis_zoom: true
+    hide_legend: true
+    series_types:
+      order_items.average_sale_price: area
+    hidden_pivots: {}
+    defaults_version: 1
+    listen:
+      Country: users.country
+      State: users.state
+      Brand: products.brand
+      Category: products.category
+      Date: order_items.created_at_date
+      Department: products.department
+      Product Name: products.name
+    row: 9
+    col: 7
+    width: 9
+    height: 5
+    tab_name: ''
+  - title: New Users by Date and Source
+    name: New Users by Date and Source
+    model: intermediate_ecomm
+    explore: intermediate_example_ecommerce_validated_orders
+    type: looker_area
+    fields: [users.traffic_source, users.count, users.created_at_date]
+    pivots: [users.traffic_source]
+    fill_fields: [users.created_at_date]
+    filters:
+      order_items.validation_status: ''
+    sorts: [users.traffic_source, users.created_at_date desc]
+    limit: 5000
+    column_limit: 50
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    trellis: ''
+    stacking: normal
+    limit_displayed_rows: false
+    legend_position: center
+    point_style: none
+    show_value_labels: false
+    label_density: 25
+    x_axis_scale: auto
+    y_axis_combined: true
+    show_null_points: false
+    interpolation: monotone
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    y_axes: [{label: '', orientation: right, series: [{axisId: users.count, id: Display
+              - users.count, name: Display}, {axisId: users.count, id: Email - users.count,
+            name: Email}, {axisId: users.count, id: Facebook - users.count, name: Facebook},
+          {axisId: users.count, id: Organic - users.count, name: Organic}, {axisId: users.count,
+            id: Search - users.count, name: Search}], showLabels: false, showValues: true,
+        unpinAxis: false, tickDensity: default, type: linear}]
+    x_axis_label: User Created
+    x_axis_zoom: true
+    y_axis_zoom: true
+    hidden_pivots: {}
+    defaults_version: 1
+    listen:
+      Country: users.country
+      State: users.state
+      Brand: products.brand
+      Category: products.category
+      Date: users.created_at_date
+      Department: products.department
+      Product Name: products.name
+    row: 9
+    col: 0
+    width: 7
+    height: 5
+    tab_name: ''
+  - title: Average Sale Price
+    name: Average Sale Price
+    model: intermediate_ecomm
+    explore: intermediate_example_ecommerce_validated_orders
+    type: single_value
+    fields: [order_items.average_sale_price]
+    filters:
+      order_items.validation_status: ''
+    limit: 500
+    column_limit: 50
+    custom_color_enabled: true
+    show_single_value_title: true
+    show_comparison: false
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    defaults_version: 1
+    hidden_pivots: {}
+    listen:
+      Country: users.country
+      State: users.state
+      Brand: products.brand
+      Category: products.category
+      Date: order_items.created_at_date
+      Department: products.department
+      Product Name: products.name
+    row: 7
+    col: 10
+    width: 3
+    height: 2
+    tab_name: ''
+  - title: New Users with Orders
+    name: New Users with Orders
+    model: intermediate_ecomm
+    explore: intermediate_example_ecommerce_validated_orders
+    type: single_value
+    fields: [users.count]
+    filters:
+      order_items.validation_status: ''
+    limit: 500
+    column_limit: 50
+    custom_color_enabled: true
+    show_single_value_title: true
+    show_comparison: false
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    defaults_version: 1
+    hidden_pivots: {}
+    listen:
+      Country: users.country
+      State: users.state
+      Brand: products.brand
+      Category: products.category
+      Date: users.created_at_date
+      Department: products.department
+      Product Name: products.name
+    row: 7
+    col: 0
+    width: 7
+    height: 2
+    tab_name: ''
+  - title: New Users Demographic Profile by Traffic Source
+    name: New Users Demographic Profile by Traffic Source
+    model: intermediate_ecomm
+    explore: intermediate_example_ecommerce_validated_orders
+    type: looker_donut_multiples
+    fields: [users.traffic_source, users.gender, users.count]
+    pivots: [users.traffic_source]
+    filters:
+      order_items.validation_status: ''
+    sorts: [users.traffic_source, users.count desc 0]
+    limit: 5000
+    column_limit: 50
+    show_value_labels: true
+    font_size: 12
+    show_view_names: false
+    show_row_numbers: true
+    transpose: false
+    truncate_text: true
+    hide_totals: false
+    hide_row_totals: false
+    size_to_fit: true
+    table_theme: white
+    limit_displayed_rows: false
+    enable_conditional_formatting: false
+    header_text_alignment: left
+    header_font_size: 12
+    rows_font_size: 12
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    trellis: ''
+    stacking: ''
+    legend_position: center
+    point_style: none
+    label_density: 25
+    x_axis_scale: auto
+    y_axis_combined: true
+    show_null_points: false
+    interpolation: linear
+    y_axes: [{label: '', orientation: left, series: [{axisId: order_items.count, id: order_items.count,
+            name: "# of Order Items"}], showLabels: true, showValues: true, unpinAxis: false,
+        tickDensity: default, tickDensityCustom: 5, type: linear}, {label: !!null '',
+        orientation: right, series: [{axisId: order_items.average_sale_price, id: order_items.average_sale_price,
+            name: Average Sale Price}], showLabels: true, showValues: true, unpinAxis: false,
+        tickDensity: default, tickDensityCustom: 5, type: linear}]
+    x_axis_zoom: true
+    y_axis_zoom: true
+    hidden_pivots: {}
+    defaults_version: 1
+    listen:
+      Country: users.country
+      State: users.state
+      Brand: products.brand
+      Category: products.category
+      Date: order_items.created_at_date
+      Department: products.department
+      Product Name: products.name
+    row: 14
+    col: 7
+    width: 9
+    height: 5
+    tab_name: ''
+  - title: Highest Spending Users
+    name: Highest Spending Users
+    model: intermediate_ecomm
+    explore: intermediate_example_ecommerce_validated_orders
+    type: looker_grid
+    fields: [users.id, users.first_order_created_at_date, users.first_order_sale_price,
+      order_items.total_sale_price, products.count]
+    filters:
+      order_items.validation_status: ''
+    sorts: [order_items.total_sale_price desc]
+    limit: 5000
+    column_limit: 50
+    show_view_names: false
+    show_row_numbers: false
+    transpose: false
+    truncate_text: true
+    hide_totals: false
+    hide_row_totals: false
+    size_to_fit: true
+    table_theme: white
+    limit_displayed_rows: false
+    enable_conditional_formatting: true
+    header_text_alignment: left
+    header_font_size: '12'
+    rows_font_size: '12'
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    show_sql_query_menu_options: false
+    column_order: ["$$$_row_numbers_$$$", users.id, users.first_order_created_at_date,
+      users.first_order_sale_price, order_items.total_sale_price, products.count]
+    show_totals: true
+    show_row_totals: true
+    truncate_header: false
+    series_labels:
+      products.count: Distinct Products
+      users.first_order_created_at_date: First Order Date
+    series_cell_visualizations:
+      order_items.total_sale_price:
+        is_active: false
+        palette:
+          palette_id: dd2f10d8-0c03-c275-b79d-2ccd2e75e52b
+          collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2
+          custom_colors:
+          - "#494f61"
+          - "#494f61"
+      products.count:
+        is_active: true
+        palette:
+          palette_id: f0077e50-e03c-4a7e-930c-7321b2267283
+          collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2
+    conditional_formatting: [{type: along a scale..., value: !!null '', background_color: "#1A73E8",
+        font_color: !!null '', color_application: {collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2,
+          palette_id: 56d0c358-10a0-4fd6-aa0b-b117bef527ab}, bold: false, italic: false,
+        strikethrough: false, fields: [order_items.total_sale_price]}]
+    series_value_format:
+      order_items.total_sale_price:
+        name: usd_0
+        decimals: '0'
+        format_string: "$#,##0"
+        label: U.S. Dollars (0)
+        label_prefix: U.S. Dollars
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    trellis: ''
+    stacking: ''
+    legend_position: center
+    point_style: none
+    show_value_labels: false
+    label_density: 25
+    x_axis_scale: auto
+    y_axis_combined: true
+    show_null_points: false
+    interpolation: linear
+    y_axes: [{label: '', orientation: left, series: [{axisId: order_items.count, id: order_items.count,
+            name: "# of Order Items"}], showLabels: true, showValues: true, unpinAxis: false,
+        tickDensity: default, tickDensityCustom: 5, type: linear}, {label: !!null '',
+        orientation: right, series: [{axisId: order_items.average_sale_price, id: order_items.average_sale_price,
+            name: Average Sale Price}], showLabels: true, showValues: true, unpinAxis: false,
+        tickDensity: default, tickDensityCustom: 5, type: linear}]
+    x_axis_zoom: true
+    y_axis_zoom: true
+    hidden_pivots: {}
+    defaults_version: 1
+    listen:
+      Country: users.country
+      State: users.state
+      Brand: products.brand
+      Category: products.category
+      Date: order_items.created_at_date
+      Department: products.department
+      Product Name: products.name
+    row: 14
+    col: 16
+    width: 8
+    height: 5
+    tab_name: ''
+  - title: Brand Sales by Department (Complete List)
+    name: Brand Sales by Department (Complete List)
+    model: intermediate_ecomm
+    explore: intermediate_example_ecommerce_validated_orders
+    type: looker_grid
+    fields: [products.brand, order_items.total_sale_price, products.department, products.count]
+    pivots: [products.department]
+    filters:
+      order_items.validation_status: ''
+    sorts: [products.department, order_items.total_sale_price desc 2]
+    limit: 5000
+    column_limit: 50
+    row_total: right
+    show_view_names: false
+    show_row_numbers: false
+    transpose: false
+    truncate_text: true
+    hide_totals: false
+    hide_row_totals: false
+    size_to_fit: true
+    table_theme: white
+    limit_displayed_rows: false
+    enable_conditional_formatting: true
+    header_text_alignment: left
+    header_font_size: '12'
+    rows_font_size: '12'
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    show_sql_query_menu_options: false
+    show_totals: true
+    show_row_totals: true
+    truncate_header: false
+    series_labels:
+      products.count: Distinct Products
+      order_items.total_sale_price: Sales
+    series_column_widths:
+      products.brand: 200
+    series_cell_visualizations:
+      order_items.total_sale_price:
+        is_active: false
+        value_display: false
+        palette:
+          palette_id: 828267df-e00f-746c-30b1-86a47652794d
+          collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2
+          custom_colors:
+          - "#494f61"
+          - "#494f61"
+      mens:
+        is_active: false
+        value_display: false
+        palette:
+          palette_id: 0d892a7f-282b-dbf8-14a6-f062eb0c9daf
+          collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2
+          custom_colors:
+          - "#1A73E8"
+          - "#1A73E8"
+      total:
+        is_active: false
+        palette:
+          palette_id: 367e1784-d791-bf48-f2e0-4226341a6c22
+          collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2
+          custom_colors:
+          - "#68bbe8"
+          - "#68bbe8"
+      womens:
+        is_active: false
+        value_display: false
+        palette:
+          palette_id: 8cc520c5-3fab-bd2f-7a1b-9592a6c607c6
+          collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2
+          custom_colors:
+          - "#68bbe8"
+          - "#68bbe8"
+      products.count:
+        is_active: true
+        palette:
+          palette_id: f0077e50-e03c-4a7e-930c-7321b2267283
+          collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2
+    conditional_formatting: [{type: along a scale..., value: !!null '', background_color: "#1A73E8",
+        font_color: !!null '', color_application: {collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2,
+          palette_id: 56d0c358-10a0-4fd6-aa0b-b117bef527ab, options: {steps: 10, stepped: false}},
+        bold: false, italic: false, strikethrough: false, fields: !!null ''}]
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    trellis: ''
+    stacking: ''
+    legend_position: center
+    point_style: none
+    show_value_labels: false
+    label_density: 25
+    x_axis_scale: auto
+    y_axis_combined: true
+    show_null_points: false
+    interpolation: linear
+    y_axes: [{label: '', orientation: left, series: [{axisId: order_items.count, id: order_items.count,
+            name: "# of Order Items"}], showLabels: true, showValues: true, unpinAxis: false,
+        tickDensity: default, tickDensityCustom: 5, type: linear}, {label: !!null '',
+        orientation: right, series: [{axisId: order_items.average_sale_price, id: order_items.average_sale_price,
+            name: Average Sale Price}], showLabels: true, showValues: true, unpinAxis: false,
+        tickDensity: default, tickDensityCustom: 5, type: linear}]
+    x_axis_zoom: true
+    y_axis_zoom: true
+    hidden_pivots: {}
+    defaults_version: 1
+    hidden_fields: [mens, womens, total]
+    listen:
+      Country: users.country
+      State: users.state
+      Brand: products.brand
+      Category: products.category
+      Date: order_items.created_at_date
+      Department: products.department
+      Product Name: products.name
+    row: 21
+    col: 12
+    width: 12
+    height: 5
+    tab_name: ''
+  - title: Top 10 Brands by Department
+    name: Top 10 Brands by Department
+    model: intermediate_ecomm
+    explore: intermediate_example_ecommerce_validated_orders
+    type: looker_bar
+    fields: [order_items.total_sale_price, products.brand, products.department]
+    pivots: [products.department]
+    filters:
+      order_items.validation_status: ''
+    sorts: [products.department, order_items.total_sale_price desc 2]
+    limit: 5000
+    column_limit: 50
+    row_total: right
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    trellis: ''
+    stacking: normal
+    limit_displayed_rows: true
+    legend_position: right
+    point_style: none
+    show_value_labels: false
+    label_density: 25
+    x_axis_scale: auto
+    y_axis_combined: true
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: true
+    show_silhouette: false
+    totals_color: "#808080"
+    y_axes: [{label: '', orientation: bottom, series: [{axisId: Men - order_items.total_sale_price,
+            id: Men - order_items.total_sale_price, name: Men}, {axisId: Women - order_items.total_sale_price,
+            id: Women - order_items.total_sale_price, name: Women}], showLabels: true,
+        showValues: false, unpinAxis: false, tickDensity: default, tickDensityCustom: 5,
+        type: linear}]
+    x_axis_zoom: true
+    y_axis_zoom: true
+    limit_displayed_rows_values:
+      show_hide: show
+      first_last: first
+      num_rows: '10'
+    label_value_format: $#.0,"K"
+    show_row_numbers: true
+    transpose: false
+    truncate_text: true
+    hide_totals: false
+    hide_row_totals: false
+    size_to_fit: true
+    table_theme: white
+    enable_conditional_formatting: false
+    header_text_alignment: left
+    header_font_size: '12'
+    rows_font_size: '12'
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    show_sql_query_menu_options: false
+    show_totals: true
+    show_row_totals: false
+    truncate_header: false
+    series_cell_visualizations:
+      order_items.total_sale_price:
+        is_active: true
+        value_display: false
+        palette:
+          palette_id: c0cb9693-0933-da36-a1ac-42d0c5e80cda
+          collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2
+          custom_colors:
+          - "#8c6ae6"
+          - lime
+    conditional_formatting: [{type: along a scale..., value: !!null '', background_color: "#1A73E8",
+        font_color: !!null '', color_application: {collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2,
+          palette_id: 56d0c358-10a0-4fd6-aa0b-b117bef527ab}, bold: false, italic: false,
+        strikethrough: false, fields: !!null ''}]
+    show_null_points: false
+    interpolation: linear
+    hidden_pivots:
+      undefined:
+        is_entire_pivot_hidden: true
+      "$$$_row_total_$$$":
+        is_entire_pivot_hidden: true
+    defaults_version: 1
+    listen:
+      Country: users.country
+      State: users.state
+      Brand: products.brand
+      Category: products.category
+      Date: order_items.created_at_date
+      Department: products.department
+      Product Name: products.name
+    row: 21
+    col: 0
+    width: 12
+    height: 5
+    tab_name: ''
+  - name: " (Copy 4)"
+    type: text
+    title_text: " (Copy 4)"
+    body_text: '[{"type":"h3","children":[{"text":"Top Categories"}],"align":"center"}]'
+    rich_content_json: '{"format":"slate"}'
+    row: 26
+    col: 0
+    width: 24
+    height: 1
+    tab_name: ''
+  - name: " (Copy 3)"
+    type: text
+    title_text: " (Copy 3)"
+    body_text: '[{"type":"h3","children":[{"text":"Top Brands"}],"align":"center"}]'
+    rich_content_json: '{"format":"slate"}'
+    row: 20
+    col: 0
+    width: 24
+    height: 1
+    tab_name: ''
+  - title: Top 10 Categories by Department
+    name: Top 10 Categories by Department
+    model: intermediate_ecomm
+    explore: intermediate_example_ecommerce_validated_orders
+    type: looker_bar
+    fields: [order_items.total_sale_price, products.department, products.category]
+    pivots: [products.department]
+    filters:
+      order_items.validation_status: ''
+    sorts: [products.department, order_items.total_sale_price desc 2]
+    limit: 5000
+    column_limit: 50
+    row_total: right
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    trellis: ''
+    stacking: normal
+    limit_displayed_rows: true
+    legend_position: right
+    point_style: none
+    show_value_labels: false
+    label_density: 25
+    x_axis_scale: auto
+    y_axis_combined: true
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: true
+    show_silhouette: false
+    totals_color: "#808080"
+    y_axes: [{label: '', orientation: bottom, series: [{axisId: Men - order_items.total_sale_price,
+            id: Men - order_items.total_sale_price, name: Men}, {axisId: Women - order_items.total_sale_price,
+            id: Women - order_items.total_sale_price, name: Women}], showLabels: true,
+        showValues: false, unpinAxis: false, tickDensity: default, tickDensityCustom: 5,
+        type: linear}]
+    x_axis_zoom: true
+    y_axis_zoom: true
+    limit_displayed_rows_values:
+      show_hide: show
+      first_last: first
+      num_rows: '10'
+    label_value_format: $#.0,"K"
+    show_row_numbers: true
+    transpose: false
+    truncate_text: true
+    hide_totals: false
+    hide_row_totals: false
+    size_to_fit: true
+    table_theme: white
+    enable_conditional_formatting: false
+    header_text_alignment: left
+    header_font_size: '12'
+    rows_font_size: '12'
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    show_sql_query_menu_options: false
+    show_totals: true
+    show_row_totals: false
+    truncate_header: false
+    series_column_widths:
+      products.category: 200
+    series_cell_visualizations:
+      order_items.total_sale_price:
+        is_active: true
+        value_display: false
+        palette:
+          palette_id: c0cb9693-0933-da36-a1ac-42d0c5e80cda
+          collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2
+          custom_colors:
+          - "#8c6ae6"
+          - lime
+    conditional_formatting: [{type: along a scale..., value: !!null '', background_color: "#1A73E8",
+        font_color: !!null '', color_application: {collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2,
+          palette_id: 56d0c358-10a0-4fd6-aa0b-b117bef527ab}, bold: false, italic: false,
+        strikethrough: false, fields: !!null ''}]
+    show_null_points: false
+    interpolation: linear
+    hidden_pivots:
+      undefined:
+        is_entire_pivot_hidden: true
+      "$$$_row_total_$$$":
+        is_entire_pivot_hidden: true
+    defaults_version: 1
+    listen:
+      Country: users.country
+      State: users.state
+      Brand: products.brand
+      Category: products.category
+      Date: order_items.created_at_date
+      Department: products.department
+      Product Name: products.name
+    row: 27
+    col: 0
+    width: 12
+    height: 5
+    tab_name: ''
+  - title: Categories by Department (Complete List)
+    name: Categories by Department (Complete List)
+    model: intermediate_ecomm
+    explore: intermediate_example_ecommerce_validated_orders
+    type: looker_grid
+    fields: [order_items.total_sale_price, products.department, products.category,
+      products.count]
+    pivots: [products.department]
+    filters:
+      order_items.validation_status: ''
+    sorts: [products.department, order_items.total_sale_price desc 2]
+    limit: 5000
+    column_limit: 50
+    row_total: right
+    show_view_names: false
+    show_row_numbers: false
+    transpose: false
+    truncate_text: true
+    hide_totals: false
+    hide_row_totals: false
+    size_to_fit: true
+    table_theme: white
+    limit_displayed_rows: false
+    enable_conditional_formatting: true
+    header_text_alignment: left
+    header_font_size: '12'
+    rows_font_size: '12'
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    show_sql_query_menu_options: false
+    show_totals: true
+    show_row_totals: true
+    truncate_header: false
+    series_labels:
+      products.count: Distinct Products
+      order_items.total_sale_price: Sales
+    series_column_widths:
+      products.category: 200
+    series_cell_visualizations:
+      order_items.total_sale_price:
+        is_active: false
+        value_display: false
+        palette:
+          palette_id: 828267df-e00f-746c-30b1-86a47652794d
+          collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2
+          custom_colors:
+          - "#494f61"
+          - "#494f61"
+      mens:
+        is_active: false
+        value_display: false
+        palette:
+          palette_id: 0d892a7f-282b-dbf8-14a6-f062eb0c9daf
+          collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2
+          custom_colors:
+          - "#1A73E8"
+          - "#1A73E8"
+      total:
+        is_active: false
+        palette:
+          palette_id: 367e1784-d791-bf48-f2e0-4226341a6c22
+          collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2
+          custom_colors:
+          - "#68bbe8"
+          - "#68bbe8"
+      womens:
+        is_active: false
+        value_display: false
+        palette:
+          palette_id: 8cc520c5-3fab-bd2f-7a1b-9592a6c607c6
+          collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2
+          custom_colors:
+          - "#68bbe8"
+          - "#68bbe8"
+      products.count:
+        is_active: true
+        palette:
+          palette_id: f0077e50-e03c-4a7e-930c-7321b2267283
+          collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2
+    conditional_formatting: [{type: along a scale..., value: !!null '', background_color: "#1A73E8",
+        font_color: !!null '', color_application: {collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2,
+          palette_id: 56d0c358-10a0-4fd6-aa0b-b117bef527ab}, bold: false, italic: false,
+        strikethrough: false, fields: !!null ''}]
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    trellis: ''
+    stacking: ''
+    legend_position: center
+    point_style: none
+    show_value_labels: false
+    label_density: 25
+    x_axis_scale: auto
+    y_axis_combined: true
+    show_null_points: false
+    interpolation: linear
+    y_axes: [{label: '', orientation: left, series: [{axisId: order_items.count, id: order_items.count,
+            name: "# of Order Items"}], showLabels: true, showValues: true, unpinAxis: false,
+        tickDensity: default, tickDensityCustom: 5, type: linear}, {label: !!null '',
+        orientation: right, series: [{axisId: order_items.average_sale_price, id: order_items.average_sale_price,
+            name: Average Sale Price}], showLabels: true, showValues: true, unpinAxis: false,
+        tickDensity: default, tickDensityCustom: 5, type: linear}]
+    x_axis_zoom: true
+    y_axis_zoom: true
+    hidden_pivots: {}
+    defaults_version: 1
+    listen:
+      Country: users.country
+      State: users.state
+      Brand: products.brand
+      Category: products.category
+      Date: order_items.created_at_date
+      Department: products.department
+      Product Name: products.name
+    row: 27
+    col: 12
+    width: 12
+    height: 5
+    tab_name: ''
+  - title: "'First Order' Items vs All"
+    name: "'First Order' Items vs All"
+    model: intermediate_ecomm
+    explore: intermediate_example_ecommerce
+    type: looker_area
+    fields: [first_order_only, order_items.count, order_items.created_at_date]
+    fill_fields: [order_items.created_at_date]
+    sorts: [order_items.created_at_date desc]
+    limit: 500
+    column_limit: 50
+    dynamic_fields:
+    - category: measure
+      expression: "${users.first_order_created_at_raw}=${order_items.created_at_raw}"
+      label: First Order Only
+      based_on: order_items.count
+      filter_expression: "${users.first_order_created_at_raw}=${order_items.created_at_raw}"
+      _kind_hint: measure
+      measure: first_order_only
+      type: count_distinct
+      _type_hint: number
+      filters:
+        order_items.created_at_month: ''
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    trellis: ''
+    stacking: ''
+    limit_displayed_rows: false
+    legend_position: center
+    point_style: none
+    show_value_labels: false
+    label_density: 25
+    x_axis_scale: auto
+    y_axis_combined: true
+    show_null_points: true
+    interpolation: monotone
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    y_axes: [{label: !!null '', orientation: right, series: [{axisId: first_order_only,
+            id: first_order_only, name: Users&#39; First Order}, {axisId: order_items.count,
+            id: order_items.count, name: All Orders}], showLabels: true, showValues: true,
+        unpinAxis: false, tickDensity: default, tickDensityCustom: 5, type: linear}]
+    x_axis_label: Order Created
+    x_axis_zoom: true
+    y_axis_zoom: true
+    hide_legend: false
+    series_colors:
+      first_order_only: "#7CB342"
+    series_labels:
+      order_items.count: All Orders
+      first_order_only: First Order
+    reference_lines: []
+    trend_lines: []
+    hidden_pivots: {}
+    defaults_version: 1
+    listen:
+      Country: users.country
+      State: users.state
+      Brand: products.brand
+      Category: products.category
+      Date: order_items.created_at_date
+      Department: products.department
+      Product Name: products.name
+    row: 14
+    col: 0
+    width: 7
+    height: 5
+    tab_name: ''
+  - title: Unique Users
+    name: Unique Users
+    model: intermediate_ecomm
+    explore: intermediate_example_ecommerce_validated_orders
+    type: single_value
+    fields: [users.count]
+    filters:
+      order_items.validation_status: ''
+    limit: 500
+    column_limit: 50
+    custom_color_enabled: true
+    show_single_value_title: true
+    show_comparison: false
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    defaults_version: 1
+    hidden_pivots: {}
+    listen:
+      Country: users.country
+      State: users.state
+      Brand: products.brand
+      Category: products.category
+      Date: order_items.created_at_date
+      Department: products.department
+      Product Name: products.name
+    row: 7
+    col: 13
+    width: 3
+    height: 2
+    tab_name: ''
+  - name: About This Dashboard
+    type: text
+    title_text: About This Dashboard
+    body_text: |-
+      This dashboard is an enhanced version of 'Business Pulse - Basic visualization examples'.
+
+      This dashboard adds these features
+      <br>- Info about the Users' First Orders
+      <br>- Product specific info
+      <br>- Geographic visuals
+
+
+      <details><summary>+ Other notes</summary>
+      - This Dashboard shows only Valid items (Items that were not cancelled or returned)
+      <br>- ‘New Users’ only counts users with any valid orders meeting the filter criteria.
+      <br>- INTERACTIVITY REMINDER: Click field values to drill down to more detail.
+      <br><br>
+      </details>
+    row: 0
+    col: 0
+    width: 12
+    height: 5
+    tab_name: ''
+  - name: '<p style="text-align: center;"><font size= "5">Product Breakdown</font><font
+      size= "2"> (Click to Drill Down)</font></p>'
+    type: text
+    title_text: '<p style="text-align: center;"><font size= "5">Product Breakdown</font><font
+      size= "2"> (Click to Drill Down)</font></p>'
+    body_text: ''
+    row: 19
+    col: 0
+    width: 24
+    height: 1
+    tab_name: ''
+  - name: " (Copy 0)"
+    type: text
+    title_text: " (Copy 0)"
+    body_text: '[{"type":"h3","children":[{"text":"Top Products"}],"align":"center"}]'
+    rich_content_json: '{"format":"slate"}'
+    row: 32
+    col: 0
+    width: 24
+    height: 1
+    tab_name: ''
+  - title: Top Products
+    name: Top Products
+    model: intermediate_ecomm
+    explore: intermediate_example_ecommerce_validated_orders
+    type: looker_grid
+    fields: [order_items.total_sale_price, products.name, products.department, products.brand,
+      products.category, products.retail_price, order_items.first_order_date]
+    filters:
+      order_items.validation_status: ''
+    sorts: [order_items.total_sale_price desc]
+    limit: 5000
+    column_limit: 50
+    show_view_names: false
+    show_row_numbers: false
+    transpose: false
+    truncate_text: true
+    hide_totals: false
+    hide_row_totals: false
+    size_to_fit: true
+    table_theme: white
+    limit_displayed_rows: false
+    enable_conditional_formatting: true
+    header_text_alignment: left
+    header_font_size: '12'
+    rows_font_size: '12'
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    show_sql_query_menu_options: false
+    column_order: [products.name, order_items.total_sale_price, products.retail_price,
+      products.department, products.brand, products.category]
+    show_totals: true
+    show_row_totals: true
+    truncate_header: false
+    series_labels:
+      products.count: Distinct Products
+      users.first_order_created_at_date: First Order Date
+    series_column_widths:
+      products.name: 347
+    series_cell_visualizations:
+      order_items.total_sale_price:
+        is_active: false
+        palette:
+          palette_id: dd2f10d8-0c03-c275-b79d-2ccd2e75e52b
+          collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2
+          custom_colors:
+          - "#494f61"
+          - "#494f61"
+      products.count:
+        is_active: true
+        palette:
+          palette_id: 31c05d51-23e7-d2aa-fc65-53dc9c296a87
+          collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2
+          custom_colors:
+          - "#494f61"
+          - "#494f61"
+    conditional_formatting: [{type: along a scale..., value: !!null '', background_color: "#1A73E8",
+        font_color: !!null '', color_application: {collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2,
+          palette_id: 56d0c358-10a0-4fd6-aa0b-b117bef527ab}, bold: false, italic: false,
+        strikethrough: false, fields: [order_items.total_sale_price]}]
+    series_value_format:
+      order_items.total_sale_price:
+        name: usd_0
+        decimals: '0'
+        format_string: "$#,##0"
+        label: U.S. Dollars (0)
+        label_prefix: U.S. Dollars
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    trellis: ''
+    stacking: ''
+    legend_position: center
+    point_style: none
+    show_value_labels: false
+    label_density: 25
+    x_axis_scale: auto
+    y_axis_combined: true
+    show_null_points: false
+    interpolation: linear
+    y_axes: [{label: '', orientation: left, series: [{axisId: order_items.count, id: order_items.count,
+            name: "# of Order Items"}], showLabels: true, showValues: true, unpinAxis: false,
+        tickDensity: default, tickDensityCustom: 5, type: linear}, {label: !!null '',
+        orientation: right, series: [{axisId: order_items.average_sale_price, id: order_items.average_sale_price,
+            name: Average Sale Price}], showLabels: true, showValues: true, unpinAxis: false,
+        tickDensity: default, tickDensityCustom: 5, type: linear}]
+    x_axis_zoom: true
+    y_axis_zoom: true
+    hidden_pivots: {}
+    defaults_version: 1
+    title_hidden: true
+    listen:
+      Country: users.country
+      State: users.state
+      Brand: products.brand
+      Category: products.category
+      Date: order_items.created_at_date
+      Department: products.department
+      Product Name: products.name
+    row: 33
+    col: 0
+    width: 24
+    height: 12
+    tab_name: ''
+  filters:
+  - name: Date
+    title: Date
+    type: field_filter
+    default_value: 6 month ago for 6 month
+    allow_multiple_values: true
+    required: false
+    ui_config:
+      type: advanced
+      display: popover
+      options: []
+    model: intermediate_ecomm
+    explore: intermediate_example_ecommerce
+    listens_to_filters: []
+    field: order_items.created_at_date
+  - name: Country
+    title: Country
+    type: field_filter
+    default_value: ''
+    allow_multiple_values: true
+    required: false
+    ui_config:
+      type: tag_list
+      display: popover
+    model: intermediate_ecomm
+    explore: intermediate_example_ecommerce
+    listens_to_filters: []
+    field: users.country
+  - name: State
+    title: State
+    type: field_filter
+    default_value: ''
+    allow_multiple_values: true
+    required: false
+    ui_config:
+      type: tag_list
+      display: popover
+    model: intermediate_ecomm
+    explore: intermediate_example_ecommerce
+    listens_to_filters: [Country]
+    field: users.state
+  - name: Department
+    title: Department
+    type: field_filter
+    default_value: Men,Women
+    allow_multiple_values: true
+    required: false
+    ui_config:
+      type: button_group
+      display: inline
+    model: intermediate_ecomm
+    explore: intermediate_example_ecommerce
+    listens_to_filters: []
+    field: products.department
+  - name: Category
+    title: Category
+    type: field_filter
+    default_value: ''
+    allow_multiple_values: true
+    required: false
+    ui_config:
+      type: tag_list
+      display: popover
+    model: intermediate_ecomm
+    explore: intermediate_example_ecommerce
+    listens_to_filters: []
+    field: products.category
+  - name: Brand
+    title: Brand
+    type: field_filter
+    default_value: ''
+    allow_multiple_values: true
+    required: false
+    ui_config:
+      type: tag_list
+      display: popover
+    model: intermediate_ecomm
+    explore: intermediate_example_ecommerce
+    listens_to_filters: []
+    field: products.brand
+  - name: Product Name
+    title: Product Name
+    type: field_filter
+    default_value: ''
+    allow_multiple_values: true
+    required: false
+    ui_config:
+      type: tag_list
+      display: popover
+    model: intermediate_ecomm
+    explore: intermediate_example_ecommerce
+    listens_to_filters: [Department, Category, Brand]
+    field: products.name
