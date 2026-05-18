@@ -1,0 +1,1404 @@
+---
+- dashboard: 3_business_pulse__advanced_visualization_examples
+  title: 3) Business Pulse - Advanced visualization examples
+  preferred_viewer: dashboards-next
+  description: ''
+  preferred_slug: OYRrqT1Tyxqh9PY06I3rxo
+  layout: newspaper
+  tabs:
+  - name: ''
+    label: ''
+  elements:
+  - title: Average Sales Price
+    name: Average Sales Price
+    model: advanced_ecomm
+    explore: advanced_example_ecommerce
+    type: single_value
+    fields: [order_items.average_sale_price, user_summary_unfiltered.average_sale_price_for_these_users,
+      user_summary_and_order_items_fields.filtered_average_vs_unfiltered_average]
+    filters:
+      order_items.validation_status: ''
+    limit: 500
+    column_limit: 50
+    custom_color_enabled: true
+    show_single_value_title: true
+    show_comparison: true
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    comparison_label: "(vs Buyers' Lifetime Avg)"
+    defaults_version: 1
+    hidden_pivots: {}
+    hidden_fields: [user_summary_unfiltered.average_sale_price_for_these_users]
+    y_axes: []
+    listen:
+      Priority Items Only Toggle: priority_item_filter_feature_support.priority_items_only_toggle
+      Created Date: order_items.created_at_date
+      Department: products.department
+      Category: products.category
+      Brand: products.brand
+      Product Name: products.name
+      User Revenue Rank Group (Lifetime): user_summary_unfiltered.user_revenue_rank_group
+      User Country: users.country
+      User State: users.state
+    row: 4
+    col: 5
+    width: 5
+    height: 4
+    tab_name: ''
+  - title: Total Items
+    name: Total Items
+    model: advanced_ecomm
+    explore: advanced_example_ecommerce
+    type: single_value
+    fields: [order_items.count, user_summary_and_order_items_fields.percent_of_lifetime_unfiltered_sales]
+    filters:
+      order_items.validation_status: ''
+    limit: 500
+    column_limit: 50
+    custom_color_enabled: true
+    show_single_value_title: true
+    show_comparison: true
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    comparison_label: of these Buyers' Lifetime Sales
+    defaults_version: 1
+    hidden_fields: []
+    y_axes: []
+    listen:
+      Priority Items Only Toggle: priority_item_filter_feature_support.priority_items_only_toggle
+      Created Date: order_items.created_at_date
+      Department: products.department
+      Category: products.category
+      Brand: products.brand
+      Product Name: products.name
+      User Revenue Rank Group (Lifetime): user_summary_unfiltered.user_revenue_rank_group
+      User Country: users.country
+      User State: users.state
+    row: 4
+    col: 0
+    width: 5
+    height: 4
+    tab_name: ''
+  - title: Unique Users
+    name: Unique Users
+    model: advanced_ecomm
+    explore: advanced_example_ecommerce
+    type: single_value
+    fields: [users.count, first_time_buyers]
+    filters:
+      order_items.validation_status: ''
+    sorts: [users.count desc 0]
+    limit: 500
+    column_limit: 50
+    dynamic_fields:
+    - category: dimension
+      expression: "${order_items.created_at_date}=${user_summary_unfiltered.first_order_month}"
+      label: first order month
+      value_format:
+      value_format_name:
+      dimension: first_order_month
+      _kind_hint: dimension
+      _type_hint: yesno
+    - category: measure
+      expression: "${order_items.created_at_date}=${user_summary_unfiltered.first_order_date}"
+      label: First Time Buyers
+      value_format:
+      value_format_name:
+      based_on: users.count
+      filter_expression: "${order_items.created_at_date}=${user_summary_unfiltered.first_order_date}"
+      _kind_hint: measure
+      measure: first_time_buyers
+      type: count_distinct
+      _type_hint: number
+    custom_color_enabled: true
+    show_single_value_title: true
+    show_comparison: true
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    single_value_title: Unique Users
+    comparison_label: ''
+    defaults_version: 1
+    hidden_pivots: {}
+    hidden_fields: []
+    y_axes: []
+    listen:
+      Priority Items Only Toggle: priority_item_filter_feature_support.priority_items_only_toggle
+      Created Date: order_items.created_at_date
+      Department: products.department
+      Category: products.category
+      Brand: products.brand
+      Product Name: products.name
+      User Revenue Rank Group (Lifetime): user_summary_unfiltered.user_revenue_rank_group
+      User Country: users.country
+      User State: users.state
+    row: 4
+    col: 10
+    width: 5
+    height: 4
+    tab_name: ''
+  - title: Recent Priority Items
+    name: Recent Priority Items
+    model: advanced_ecomm
+    explore: advanced_example_ecommerce
+    type: looker_grid
+    fields: [users.id, order_items.created_at_time, products.name, user_summary_unfiltered.user_revenue_rank_group,
+      order_items.total_sale_price]
+    filters:
+      order_items.validation_status: ''
+      priority_item_filter_feature_support.is_high_priority_item: 'Yes'
+    sorts: [order_items.created_at_time desc]
+    limit: 500
+    column_limit: 50
+    dynamic_fields:
+    - category: dimension
+      expression: "${order_items.created_at_date}=${user_summary_unfiltered.first_order_month}"
+      label: first order month
+      value_format:
+      value_format_name:
+      dimension: first_order_month
+      _kind_hint: dimension
+      _type_hint: yesno
+    - category: measure
+      expression: "${order_items.created_at_date}=${user_summary_unfiltered.first_order_date}"
+      label: First Time Buyers
+      value_format:
+      value_format_name:
+      based_on: users.count
+      filter_expression: "${order_items.created_at_date}=${user_summary_unfiltered.first_order_date}"
+      _kind_hint: measure
+      measure: first_time_buyers
+      type: count_distinct
+      _type_hint: number
+    show_view_names: false
+    show_row_numbers: false
+    transpose: false
+    truncate_text: true
+    hide_totals: false
+    hide_row_totals: false
+    size_to_fit: true
+    table_theme: white
+    limit_displayed_rows: false
+    enable_conditional_formatting: true
+    header_text_alignment: left
+    header_font_size: '12'
+    rows_font_size: '11'
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    show_sql_query_menu_options: false
+    column_order: ["$$$_row_numbers_$$$", users.id, user_summary_unfiltered.user_revenue_rank_group,
+      order_items.created_at_time, products.name, order_items.total_sale_price]
+    show_totals: true
+    show_row_totals: true
+    truncate_header: false
+    series_labels:
+      user_summary_unfiltered.user_revenue_rank_group: Revenue Group
+    series_column_widths:
+      users.id: 80
+      order_items.created_at_time: 140
+      user_summary_unfiltered.user_revenue_rank_group: 100
+      order_items.total_sale_price: 80
+    series_cell_visualizations:
+      order_items.count:
+        is_active: true
+      order_items.total_sale_price:
+        is_active: false
+    conditional_formatting: [{type: along a scale..., value: !!null '', background_color: "#1A73E8",
+        font_color: !!null '', color_application: {collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2,
+          palette_id: 56d0c358-10a0-4fd6-aa0b-b117bef527ab}, bold: false, italic: false,
+        strikethrough: false, fields: [order_items.total_sale_price]}]
+    custom_color_enabled: true
+    show_single_value_title: true
+    show_comparison: true
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    single_value_title: Unique Users
+    comparison_label: ''
+    defaults_version: 1
+    hidden_pivots: {}
+    hidden_fields: []
+    y_axes: []
+    listen:
+      Priority Items Only Toggle: priority_item_filter_feature_support.priority_items_only_toggle
+      Created Date: order_items.created_at_date
+      Department: products.department
+      Category: products.category
+      Brand: products.brand
+      Product Name: products.name
+      User Revenue Rank Group (Lifetime): user_summary_unfiltered.user_revenue_rank_group
+      User Country: users.country
+      User State: users.state
+    row: 16
+    col: 15
+    width: 9
+    height: 23
+    tab_name: ''
+  - name: About This Dashboard
+    type: text
+    title_text: About This Dashboard
+    body_text: |-
+      This dashboard is an enhanced version of the ecommerce dashboards [1) Business Pulse - Basic](/dashboards/1) and [2) Business Pulse - Intermediate](/dashboards/2).
+
+      This dashboard adds these features:
+      <br>- User Lifetime Revenue Rank and Item Count Group made available
+      <br>- Breakdowns based on <span style="color: green;" >High Priority Item</span> designation
+
+      <details><summary>
+      + Other notes</summary>
+      - This Dashboard shows only Valid items (Items that were not cancelled or returned)
+      <br>- ‘New Users’ only counts users with any valid orders meeting the filter criteria.
+      <br>- INTERACTIVITY REMINDER: Click field values to drill down to more detail.
+      <br><br>
+      </details>
+    row: 0
+    col: 0
+    width: 15
+    height: 4
+    tab_name: ''
+  - title: High Priority Items Breakdown
+    name: High Priority Items Breakdown
+    model: advanced_ecomm
+    explore: advanced_example_ecommerce
+    type: looker_grid
+    fields: [user_summary_unfiltered.user_revenue_rank_group, priority_item_filter_feature_support.is_high_value_item,
+      order_items.count, priority_item_filter_feature_support.count_high_priority_items]
+    filters:
+      order_items.validation_status: ''
+    sorts: [user_summary_unfiltered.user_revenue_rank_group]
+    subtotals: [user_summary_unfiltered.user_revenue_rank_group]
+    limit: 500
+    column_limit: 50
+    dynamic_fields:
+    - category: measure
+      expression:
+      label: High Value Items
+      value_format:
+      value_format_name:
+      based_on: order_items.count
+      _kind_hint: measure
+      measure: high_value_items
+      type: count
+      _type_hint: number
+      filters: {}
+    show_view_names: false
+    show_row_numbers: true
+    transpose: false
+    truncate_text: true
+    hide_totals: false
+    hide_row_totals: false
+    size_to_fit: true
+    table_theme: white
+    limit_displayed_rows: false
+    enable_conditional_formatting: false
+    header_text_alignment: left
+    header_font_size: '10'
+    rows_font_size: '10'
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    show_sql_query_menu_options: false
+    show_totals: true
+    show_row_totals: true
+    truncate_header: false
+    series_labels:
+      order_items.count: All Items
+      high_value_items: High Value Only
+      user_summary_unfiltered.user_revenue_rank_group: Life Revenue Group (>)
+      priority_item_filter_feature_support.is_high_value_item: High Val (+)
+      priority_item_filter_feature_support.count_high_priority_items: Considered High
+        Priority
+    series_cell_visualizations:
+      order_items.count:
+        is_active: true
+    series_collapsed:
+      user_summary_unfiltered.user_revenue_rank_group: true
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    trellis: ''
+    stacking: ''
+    legend_position: center
+    point_style: circle
+    show_value_labels: false
+    label_density: 25
+    x_axis_scale: auto
+    y_axis_combined: true
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    x_axis_zoom: true
+    y_axis_zoom: true
+    series_colors:
+      high_value_items: "#1A73E8"
+      order_items.count: "#80868B"
+    custom_color_enabled: true
+    show_single_value_title: true
+    show_comparison: true
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    comparison_label: of these Buyers' Lifetime Sales
+    defaults_version: 1
+    hidden_pivots: {}
+    hidden_fields: []
+    y_axes: []
+    note_state: collapsed
+    note_display: above
+    note_text: "<details><summary>( + Click to Expand ) <span style=\"color: green;\"\
+      \ >'High Priority Items' </span>Explainer</summary>\nHigh Priority Items are\
+      \ items that are valid and have high value OR are created by users in our Top\
+      \ revenue group. \n\nClick the > on a row to clearly see that items how Item\
+      \ Value drives High Priority Designation and notice that all items for Top Revenue\
+      \ Group are considered priority.\n\n</details>"
+    title_hidden: true
+    listen:
+      Priority Items Only Toggle: priority_item_filter_feature_support.priority_items_only_toggle
+      Created Date: order_items.created_at_date
+      Department: products.department
+      Category: products.category
+      Brand: products.brand
+      Product Name: products.name
+      User Revenue Rank Group (Lifetime): user_summary_unfiltered.user_revenue_rank_group
+      User Country: users.country
+      User State: users.state
+    row: 4
+    col: 15
+    width: 9
+    height: 4
+    tab_name: ''
+  - title: All Items Vs Priority Items
+    name: All Items Vs Priority Items
+    model: advanced_ecomm
+    explore: advanced_example_ecommerce
+    type: looker_line
+    fields: [order_items.count, order_items.created_at_date, priority_item_filter_feature_support.count_high_priority_items]
+    fill_fields: [order_items.created_at_date]
+    filters:
+      order_items.validation_status: ''
+    sorts: [order_items.created_at_date desc]
+    limit: 500
+    column_limit: 50
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    trellis: ''
+    stacking: ''
+    limit_displayed_rows: false
+    legend_position: center
+    point_style: none
+    show_value_labels: false
+    label_density: 25
+    x_axis_scale: auto
+    y_axis_combined: true
+    show_null_points: true
+    interpolation: linear
+    x_axis_zoom: true
+    y_axis_zoom: true
+    series_types:
+      priority_item_filter_feature_support.count_high_priority_items: area
+    series_colors:
+      priority_item_filter_feature_support.count_high_priority_items: "#7CB342"
+    series_labels:
+      No - order_items.count: Standard
+      Yes - order_items.count: High Priority Items
+      order_items.count: All Items
+      priority_item_filter_feature_support.count_high_priority_items: Priority Items
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    custom_color_enabled: true
+    show_single_value_title: true
+    show_comparison: true
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    comparison_label: of these Buyers' Lifetime Sales
+    defaults_version: 1
+    hidden_pivots: {}
+    ordering: none
+    show_null_labels: false
+    hidden_fields: []
+    y_axes: []
+    listen:
+      Priority Items Only Toggle: priority_item_filter_feature_support.priority_items_only_toggle
+      Created Date: order_items.created_at_date
+      Department: products.department
+      Category: products.category
+      Brand: products.brand
+      Product Name: products.name
+      User Revenue Rank Group (Lifetime): user_summary_unfiltered.user_revenue_rank_group
+      User Country: users.country
+      User State: users.state
+    row: 8
+    col: 15
+    width: 9
+    height: 8
+    tab_name: ''
+  - name: ''
+    type: text
+    title_text: ''
+    body_text: '[{"type":"p","children":[{"text":""}],"id":1680548454812},{"type":"p","id":1680548481764,"children":[{"text":""}]},{"type":"p","id":1680548504382,"children":[{"text":""}]},{"type":"p","id":1680548504948,"children":[{"text":""}]},{"type":"p","id":1680548483559,"children":[{"text":"                                                                                                                    ","underline":true}],"align":"center"},{"type":"h1","children":[{"text":"Priority
+      Item Info","color":"hsl(100, 57%, 33%)"}],"align":"center"}]'
+    rich_content_json: '{"format":"slate"}'
+    row: 0
+    col: 15
+    width: 9
+    height: 4
+    tab_name: ''
+  - title: New Users over time by Lifetime Revenue Group
+    name: New Users over time by Lifetime Revenue Group
+    model: advanced_ecomm
+    explore: advanced_example_ecommerce
+    type: looker_area
+    fields: [users.count, user_summary_unfiltered.user_revenue_rank_group, users.created_at_date]
+    pivots: [user_summary_unfiltered.user_revenue_rank_group]
+    fill_fields: [user_summary_unfiltered.user_revenue_rank_group, users.created_at_date]
+    filters:
+      order_items.validation_status: ''
+    sorts: [user_summary_unfiltered.user_revenue_rank_group, users.created_at_date
+        desc]
+    limit: 500
+    column_limit: 50
+    dynamic_fields:
+    - category: table_calculation
+      expression: if(diff_days(${users.created_at_date},now() )<=7,no,yes)
+      label: show/hide for recency
+      value_format:
+      value_format_name:
+      _kind_hint: dimension
+      table_calculation: showhide_for_recency
+      _type_hint: yesno
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    trellis: ''
+    stacking: normal
+    limit_displayed_rows: false
+    legend_position: center
+    point_style: none
+    show_value_labels: false
+    label_density: 25
+    x_axis_scale: auto
+    y_axis_combined: true
+    show_null_points: true
+    interpolation: monotone
+    show_totals_labels: false
+    show_silhouette: true
+    totals_color: "#808080"
+    x_axis_zoom: true
+    y_axis_zoom: true
+    limit_displayed_rows_values:
+      show_hide: hide
+      first_last: first
+      num_rows: '1'
+    hidden_series: [1st Quartile - 1 - users.count, 3nd Quartile - 3 - users.count,
+      Bottom 25% - 4 - users.count, 2nd Quartile - 2 - users.count, 1st 25% - 1 -
+        users.count, 2nd 25% - 2 - users.count, 3nd 25% - 3 - users.count]
+    series_colors:
+      priority_order_filter_feature_support.count_high_priority_items: "#7CB342"
+      Top 1000 - 0 - users.count: "#7CB342"
+    series_labels:
+      No - order_items.count: Standard
+      Yes - order_items.count: High Priority Items
+      priority_order_filter_feature_support.count_high_priority_items: Priority Items
+      order_items.count: All Items
+    trend_lines: []
+    ordering: none
+    show_null_labels: false
+    custom_color_enabled: true
+    show_single_value_title: true
+    show_comparison: true
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    comparison_label: of these Buyers' Lifetime Sales
+    defaults_version: 1
+    hidden_pivots: {}
+    hidden_points_if_no: [showhide_for_recency]
+    hidden_fields: []
+    y_axes: []
+    note_state: collapsed
+    note_display: above
+    note_text: '<span style="color: green;" >😀 Top 1000</span> users highlighted.
+      Click other series in the legend to unhide'
+    listen:
+      Priority Items Only Toggle: priority_item_filter_feature_support.priority_items_only_toggle
+      Created Date: users.created_at_date
+      Department: products.department
+      Category: products.category
+      Brand: products.brand
+      Product Name: products.name
+      User Revenue Rank Group (Lifetime): user_summary_unfiltered.user_revenue_rank_group
+      User Country: users.country
+      User State: users.state
+    row: 8
+    col: 0
+    width: 15
+    height: 8
+    tab_name: ''
+  - name: " (2)"
+    type: text
+    title_text: ''
+    body_text: '[{"type":"h3","children":[{"text":" "},{"text":"                                                                                                                                                            ","underline":true}],"align":"center","id":1680556272590},{"type":"h1","children":[{"text":"Top
+      10 Brands and Categories"}],"id":1680552776692,"align":"center"},{"type":"p","children":[{"text":"for
+      🟢 😀 "},{"text":"Top 1000","color":"hsl(101, 52%, 46%)"},{"text":" Users  vs   🔵
+      All Users"}],"align":"center","id":1680554752003}]'
+    rich_content_json: '{"format":"slate"}'
+    row: 25
+    col: 1
+    width: 14
+    height: 2
+    tab_name: ''
+  - title: Top 10 Revenue Brands - Avg Sale Price All vs Top 1000
+    name: Top 10 Revenue Brands - Avg Sale Price All vs Top 1000
+    model: advanced_ecomm
+    explore: advanced_example_ecommerce
+    type: looker_bar
+    fields: [products.brand, order_items.average_sale_price, order_items.total_sale_price,
+      user_summary_unfiltered.is_top_rank_group]
+    pivots: [user_summary_unfiltered.is_top_rank_group]
+    fill_fields: [user_summary_unfiltered.is_top_rank_group]
+    filters:
+      order_items.validation_status: ''
+    sorts: [user_summary_unfiltered.is_top_rank_group, order_items.total_sale_price
+        desc 2]
+    limit: 5000
+    column_limit: 50
+    row_total: right
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    trellis: ''
+    stacking: ''
+    limit_displayed_rows: true
+    legend_position: center
+    point_style: circle
+    show_value_labels: true
+    label_density: 25
+    x_axis_scale: auto
+    y_axis_combined: true
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: true
+    totals_color: "#808080"
+    y_axes: [{label: '', orientation: bottom, series: [{axisId: order_items.average_sale_price,
+            id: Top 1000 - 0 - order_items.average_sale_price, name: Top 1000}, {
+            axisId: order_items.average_sale_price, id: Row Total - order_items.average_sale_price,
+            name: All}], showLabels: false, showValues: false, unpinAxis: false, tickDensity: default,
+        tickDensityCustom: 5, type: linear}]
+    x_axis_zoom: true
+    y_axis_zoom: true
+    limit_displayed_rows_values:
+      show_hide: show
+      first_last: first
+      num_rows: '10'
+    hidden_series: []
+    hide_legend: true
+    series_colors:
+      priority_order_filter_feature_support.count_high_priority_items: "#7CB342"
+      Top 1000 - 0 - users.count: "#7CB342"
+      Top 1000 - 0 - order_items.average_sale_price: "#7CB342"
+      Row Total - order_items.average_sale_price: "#12B5CB"
+      Top Revenue Group - 0 - order_items.average_sale_price: "#7CB342"
+    series_labels:
+      No - order_items.count: Standard
+      Yes - order_items.count: High Priority Items
+      priority_order_filter_feature_support.count_high_priority_items: Priority Items
+      order_items.count: All Items
+      Row Total - order_items.average_sale_price: All
+    series_point_styles:
+      Top 1000 - 0 - order_items.average_sale_price: diamond
+    trend_lines: []
+    show_null_points: true
+    interpolation: monotone
+    custom_color_enabled: true
+    show_single_value_title: true
+    show_comparison: true
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    comparison_label: of these Buyers' Lifetime Sales
+    defaults_version: 1
+    hidden_pivots:
+      "$$$_row_total_$$$":
+        is_entire_pivot_hidden: true
+    hidden_fields: [order_items.total_sale_price]
+    title_hidden: true
+    listen:
+      Priority Items Only Toggle: priority_item_filter_feature_support.priority_items_only_toggle
+      Created Date: order_items.created_at_date
+      Department: products.department
+      Category: products.category
+      Brand: products.brand
+      Product Name: products.name
+      User Revenue Rank Group (Lifetime): user_summary_unfiltered.user_revenue_rank_group
+      User Country: users.country
+      User State: users.state
+    row: 34
+    col: 1
+    width: 7
+    height: 5
+    tab_name: ''
+  - title: Top 10 Categories - Avg Sale Price All vs Top 1000 (Copy)
+    name: Top 10 Categories - Avg Sale Price All vs Top 1000 (Copy)
+    model: advanced_ecomm
+    explore: advanced_example_ecommerce
+    type: looker_bar
+    fields: [order_items.average_sale_price, order_items.total_sale_price, products.category,
+      user_summary_unfiltered.is_top_rank_group]
+    pivots: [user_summary_unfiltered.is_top_rank_group]
+    fill_fields: [user_summary_unfiltered.is_top_rank_group]
+    filters:
+      order_items.validation_status: ''
+    sorts: [user_summary_unfiltered.is_top_rank_group, order_items.total_sale_price
+        desc 2]
+    limit: 5000
+    column_limit: 50
+    row_total: right
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    trellis: ''
+    stacking: ''
+    limit_displayed_rows: true
+    legend_position: center
+    point_style: circle
+    show_value_labels: true
+    label_density: 25
+    x_axis_scale: auto
+    y_axis_combined: true
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: true
+    totals_color: "#808080"
+    y_axes: [{label: '', orientation: bottom, series: [{axisId: order_items.average_sale_price,
+            id: Top 1000 - 0 - order_items.average_sale_price, name: Top 1000}, {
+            axisId: order_items.average_sale_price, id: Row Total - order_items.average_sale_price,
+            name: All}], showLabels: false, showValues: false, unpinAxis: false, tickDensity: default,
+        tickDensityCustom: 5, type: linear}]
+    x_axis_zoom: true
+    y_axis_zoom: true
+    limit_displayed_rows_values:
+      show_hide: show
+      first_last: first
+      num_rows: '10'
+    hidden_series: []
+    hide_legend: true
+    series_colors:
+      priority_order_filter_feature_support.count_high_priority_items: "#7CB342"
+      Top 1000 - 0 - users.count: "#7CB342"
+      Top 1000 - 0 - order_items.average_sale_price: "#7CB342"
+      Row Total - order_items.average_sale_price: "#12B5CB"
+      Top Revenue Group - 0 - order_items.average_sale_price: "#7CB342"
+    series_labels:
+      No - order_items.count: Standard
+      Yes - order_items.count: High Priority Items
+      priority_order_filter_feature_support.count_high_priority_items: Priority Items
+      order_items.count: All Items
+      Row Total - order_items.average_sale_price: All
+    series_point_styles:
+      Top 1000 - 0 - order_items.average_sale_price: diamond
+    trend_lines: []
+    show_null_points: true
+    interpolation: monotone
+    custom_color_enabled: true
+    show_single_value_title: true
+    show_comparison: true
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    comparison_label: of these Buyers' Lifetime Sales
+    defaults_version: 1
+    hidden_pivots:
+      "$$$_row_total_$$$":
+        is_entire_pivot_hidden: true
+    hidden_fields: [order_items.total_sale_price]
+    title_hidden: true
+    listen:
+      Priority Items Only Toggle: priority_item_filter_feature_support.priority_items_only_toggle
+      Created Date: order_items.created_at_date
+      Department: products.department
+      Category: products.category
+      Brand: products.brand
+      Product Name: products.name
+      User Revenue Rank Group (Lifetime): user_summary_unfiltered.user_revenue_rank_group
+      User Country: users.country
+      User State: users.state
+    row: 34
+    col: 8
+    width: 7
+    height: 5
+    tab_name: ''
+  - name: " (Copy 2)"
+    type: text
+    title_text: " (Copy 2)"
+    body_text: '[{"type":"h2","children":[{"text":"Average Sales Price"}],"align":"center","id":1680554638975}]'
+    rich_content_json: '{"format":"slate"}'
+    row: 33
+    col: 1
+    width: 14
+    height: 1
+    tab_name: ''
+  - name: " (Copy)"
+    type: text
+    title_text: " (Copy)"
+    body_text: '[{"type":"h2","children":[{"text":"Total Sales"}],"align":"center","id":1680554638975}]'
+    rich_content_json: '{"format":"slate"}'
+    row: 27
+    col: 1
+    width: 14
+    height: 1
+    tab_name: ''
+  - title: Top 10 Revenue Brands - Avg Sale Price All vs Top 1000 (Copy)
+    name: Top 10 Revenue Brands - Avg Sale Price All vs Top 1000 (Copy)
+    model: advanced_ecomm
+    explore: advanced_example_ecommerce
+    type: looker_bar
+    fields: [products.brand, order_items.total_sale_price, user_summary_unfiltered.is_top_rank_group]
+    pivots: [user_summary_unfiltered.is_top_rank_group]
+    fill_fields: [user_summary_unfiltered.is_top_rank_group]
+    filters:
+      order_items.validation_status: ''
+    sorts: [user_summary_unfiltered.is_top_rank_group, order_items.total_sale_price
+        desc 2]
+    limit: 5000
+    column_limit: 50
+    row_total: right
+    dynamic_fields:
+    - category: table_calculation
+      expression: ${order_items.total_sale_price:row_total}-pivot_where(contains(${user_summary_unfiltered.user_revenue_rank_group},"Top"),${order_items.total_sale_price})
+      label: Other
+      value_format:
+      value_format_name:
+      _kind_hint: supermeasure
+      table_calculation: other
+      _type_hint: number
+      is_disabled: true
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    trellis: ''
+    stacking: ''
+    limit_displayed_rows: true
+    legend_position: center
+    point_style: circle
+    show_value_labels: true
+    label_density: 25
+    x_axis_scale: auto
+    y_axis_combined: true
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: true
+    totals_color: "#808080"
+    y_axes: [{label: '', orientation: bottom, series: [{axisId: order_items.average_sale_price,
+            id: Top 1000 - 0 - order_items.average_sale_price, name: Top 1000}, {
+            axisId: order_items.average_sale_price, id: Row Total - order_items.average_sale_price,
+            name: All}], showLabels: false, showValues: false, unpinAxis: false, tickDensity: default,
+        tickDensityCustom: 5, type: linear}]
+    x_axis_zoom: true
+    y_axis_zoom: true
+    limit_displayed_rows_values:
+      show_hide: show
+      first_last: first
+      num_rows: '10'
+    hidden_series: []
+    hide_legend: true
+    series_colors:
+      priority_order_filter_feature_support.count_high_priority_items: "#7CB342"
+      Top 1000 - 0 - users.count: "#7CB342"
+      Top 1000 - 0 - order_items.average_sale_price: "#7CB342"
+      Row Total - order_items.average_sale_price: "#12B5CB"
+      Top 1000 - 0 - order_items.total_sale_price: "#7CB342"
+      1st Quartile - 1 - order_items.total_sale_price: "#12B5CB"
+      2nd Quartile - 2 - order_items.total_sale_price: "#12B5CB"
+      3nd Quartile - 3 - order_items.total_sale_price: "#12B5CB"
+      Bottom 25% - 4 - order_items.total_sale_price: "#12B5CB"
+      Top Revenue Group - 0 - order_items.total_sale_price: "#7CB342"
+    series_labels:
+      No - order_items.count: Standard
+      Yes - order_items.count: High Priority Items
+      priority_order_filter_feature_support.count_high_priority_items: Priority Items
+      order_items.count: All Items
+      Row Total - order_items.average_sale_price: All
+    trend_lines: []
+    show_null_points: true
+    interpolation: monotone
+    custom_color_enabled: true
+    show_single_value_title: true
+    show_comparison: true
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    comparison_label: of these Buyers' Lifetime Sales
+    defaults_version: 1
+    hidden_pivots:
+      "$$$_row_total_$$$":
+        is_entire_pivot_hidden: true
+    hidden_fields: []
+    title_hidden: true
+    listen:
+      Priority Items Only Toggle: priority_item_filter_feature_support.priority_items_only_toggle
+      Created Date: order_items.created_at_date
+      Department: products.department
+      Category: products.category
+      Brand: products.brand
+      Product Name: products.name
+      User Revenue Rank Group (Lifetime): user_summary_unfiltered.user_revenue_rank_group
+      User Country: users.country
+      User State: users.state
+    row: 28
+    col: 1
+    width: 7
+    height: 5
+    tab_name: ''
+  - title: Top 10 Revenue Brands - Avg Sale Price All vs Top 1000
+    name: Top 10 Revenue Brands - Avg Sale Price All vs Top 1000 (2)
+    model: advanced_ecomm
+    explore: advanced_example_ecommerce
+    type: looker_bar
+    fields: [order_items.total_sale_price, products.category, user_summary_unfiltered.is_top_rank_group]
+    pivots: [user_summary_unfiltered.is_top_rank_group]
+    fill_fields: [user_summary_unfiltered.is_top_rank_group]
+    filters:
+      order_items.validation_status: ''
+    sorts: [user_summary_unfiltered.is_top_rank_group, order_items.total_sale_price
+        desc 2]
+    limit: 5000
+    column_limit: 50
+    row_total: right
+    dynamic_fields:
+    - category: table_calculation
+      expression: ${order_items.total_sale_price:row_total}-pivot_where(contains(${user_summary_unfiltered.user_revenue_rank_group},"Top"),${order_items.total_sale_price})
+      label: Other
+      value_format:
+      value_format_name:
+      _kind_hint: supermeasure
+      table_calculation: other
+      _type_hint: number
+      is_disabled: true
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    trellis: ''
+    stacking: ''
+    limit_displayed_rows: true
+    legend_position: center
+    point_style: circle
+    show_value_labels: true
+    label_density: 25
+    x_axis_scale: auto
+    y_axis_combined: true
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: true
+    totals_color: "#808080"
+    y_axes: [{label: '', orientation: bottom, series: [{axisId: order_items.average_sale_price,
+            id: Top 1000 - 0 - order_items.average_sale_price, name: Top 1000}, {
+            axisId: order_items.average_sale_price, id: Row Total - order_items.average_sale_price,
+            name: All}], showLabels: false, showValues: false, unpinAxis: false, tickDensity: default,
+        tickDensityCustom: 5, type: linear}]
+    x_axis_zoom: true
+    y_axis_zoom: true
+    limit_displayed_rows_values:
+      show_hide: show
+      first_last: first
+      num_rows: '10'
+    hidden_series: []
+    hide_legend: true
+    series_colors:
+      priority_order_filter_feature_support.count_high_priority_items: "#7CB342"
+      Top 1000 - 0 - users.count: "#7CB342"
+      Top 1000 - 0 - order_items.average_sale_price: "#7CB342"
+      Row Total - order_items.average_sale_price: "#12B5CB"
+      Top 1000 - 0 - order_items.total_sale_price: "#7CB342"
+      1st Quartile - 1 - order_items.total_sale_price: "#12B5CB"
+      2nd Quartile - 2 - order_items.total_sale_price: "#12B5CB"
+      3nd Quartile - 3 - order_items.total_sale_price: "#12B5CB"
+      Bottom 25% - 4 - order_items.total_sale_price: "#12B5CB"
+      Top Revenue Group - 0 - order_items.total_sale_price: "#7CB342"
+    series_labels:
+      No - order_items.count: Standard
+      Yes - order_items.count: High Priority Items
+      priority_order_filter_feature_support.count_high_priority_items: Priority Items
+      order_items.count: All Items
+      Row Total - order_items.average_sale_price: All
+    trend_lines: []
+    show_null_points: true
+    interpolation: monotone
+    custom_color_enabled: true
+    show_single_value_title: true
+    show_comparison: true
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    comparison_label: of these Buyers' Lifetime Sales
+    defaults_version: 1
+    hidden_pivots:
+      "$$$_row_total_$$$":
+        is_entire_pivot_hidden: true
+    hidden_fields: []
+    title_hidden: true
+    listen:
+      Priority Items Only Toggle: priority_item_filter_feature_support.priority_items_only_toggle
+      Created Date: order_items.created_at_date
+      Department: products.department
+      Category: products.category
+      Brand: products.brand
+      Product Name: products.name
+      User Revenue Rank Group (Lifetime): user_summary_unfiltered.user_revenue_rank_group
+      User Country: users.country
+      User State: users.state
+    row: 28
+    col: 8
+    width: 7
+    height: 5
+    tab_name: ''
+  - title: Matching Items Only
+    name: Matching Items Only
+    model: advanced_ecomm
+    explore: advanced_example_ecommerce
+    type: looker_bar
+    fields: [user_summary_filtered.order_item_count_group, users.count]
+    pivots: [user_summary_filtered.order_item_count_group]
+    fill_fields: [user_summary_filtered.order_item_count_group]
+    filters:
+      order_items.validation_status: ''
+    sorts: [user_summary_filtered.order_item_count_group]
+    limit: 500
+    column_limit: 50
+    dynamic_fields:
+    - category: dimension
+      expression: "${order_items.created_at_date}=${user_summary_unfiltered.first_order_month}"
+      label: first order month
+      value_format:
+      value_format_name:
+      dimension: first_order_month
+      _kind_hint: dimension
+      _type_hint: yesno
+    - category: measure
+      expression: "${order_items.created_at_date}=${user_summary_unfiltered.first_order_date}"
+      label: First Time Buyers
+      value_format:
+      value_format_name:
+      based_on: users.count
+      filter_expression: "${order_items.created_at_date}=${user_summary_unfiltered.first_order_date}"
+      _kind_hint: measure
+      measure: first_time_buyers
+      type: count_distinct
+      _type_hint: number
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: false
+    show_x_axis_ticks: false
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    trellis: ''
+    stacking: normal
+    limit_displayed_rows: false
+    legend_position: center
+    point_style: none
+    show_value_labels: true
+    label_density: 25
+    x_axis_scale: auto
+    y_axis_combined: true
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#171717"
+    y_axes: [{label: "# Items (Filtered)", orientation: top, series: [{axisId: Single
+              Item - 0 - users.count, id: Single Item - 0 - users.count, name: Single
+              Item}, {axisId: 2 Items - 1 - users.count, id: 2 Items - 1 - users.count,
+            name: 2 Items}, {axisId: 3+ Items - 2 - users.count, id: 3+ Items - 2
+              - users.count, name: 3+ Items}], showLabels: false, showValues: false,
+        unpinAxis: false, tickDensity: default, tickDensityCustom: 5, type: linear}]
+    x_axis_label: Matching Items Only
+    x_axis_zoom: true
+    y_axis_zoom: false
+    hide_legend: true
+    font_size: ''
+    series_colors:
+      2 Items - 1 - users.count: "#fad20d"
+      3+ Items - 2 - users.count: "#7CB342"
+    totals_rotation: -30
+    custom_color_enabled: true
+    show_single_value_title: true
+    show_comparison: true
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    single_value_title: Unique Users
+    comparison_label: ''
+    defaults_version: 1
+    hidden_pivots: {}
+    hidden_fields: []
+    note_state: expanded
+    note_display: above
+    note_text: 'User Count by # Items (Observing Dashboards Filters)'
+    title_hidden: true
+    listen:
+      Priority Items Only Toggle: priority_item_filter_feature_support.priority_items_only_toggle
+      Created Date: order_items.created_at_date
+      Department: products.department
+      Category: products.category
+      Brand: products.brand
+      Product Name: products.name
+      User Revenue Rank Group (Lifetime): user_summary_unfiltered.user_revenue_rank_group
+      User Country: users.country
+      User State: users.state
+    row: 18
+    col: 0
+    width: 15
+    height: 3
+    tab_name: ''
+  - name: " (Copy 3)"
+    type: text
+    title_text: " (Copy 3)"
+    body_text: '[{"type":"p","children":[{"text":" "},{"text":"                                                                                                                                                            ","underline":true}],"align":"center","id":1680556272590},{"type":"h1","children":[{"text":"User
+      Count by # Items Grouping"}],"id":1680552776692,"align":"center"},{"type":"p","children":[{"text":"(*Users
+      with any items matching dashboard filters)    "},{"text":"Legend:","bold":true},{"text":"
+      🔵 Single Item 🟡 2 Items 🟢 3+ Items"}],"id":1680630835161,"align":"center"}]'
+    rich_content_json: '{"format":"slate"}'
+    row: 16
+    col: 0
+    width: 15
+    height: 2
+    tab_name: ''
+  - title: 'Users by # Items Group (Lifetime)'
+    name: 'Users by # Items Group (Lifetime)'
+    model: advanced_ecomm
+    explore: advanced_example_ecommerce
+    type: looker_bar
+    fields: [users.count, user_summary_unfiltered.order_item_count_group]
+    pivots: [user_summary_unfiltered.order_item_count_group]
+    fill_fields: [user_summary_unfiltered.order_item_count_group]
+    filters:
+      order_items.validation_status: ''
+    sorts: [user_summary_unfiltered.order_item_count_group]
+    limit: 500
+    column_limit: 50
+    dynamic_fields:
+    - category: dimension
+      expression: "${order_items.created_at_date}=${user_summary_unfiltered.first_order_month}"
+      label: first order month
+      value_format:
+      value_format_name:
+      dimension: first_order_month
+      _kind_hint: dimension
+      _type_hint: yesno
+    - category: measure
+      expression: "${order_items.created_at_date}=${user_summary_unfiltered.first_order_date}"
+      label: First Time Buyers
+      value_format:
+      value_format_name:
+      based_on: users.count
+      filter_expression: "${order_items.created_at_date}=${user_summary_unfiltered.first_order_date}"
+      _kind_hint: measure
+      measure: first_time_buyers
+      type: count_distinct
+      _type_hint: number
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: false
+    show_x_axis_ticks: false
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    trellis: ''
+    stacking: normal
+    limit_displayed_rows: false
+    legend_position: center
+    point_style: none
+    show_value_labels: true
+    label_density: 25
+    x_axis_scale: auto
+    y_axis_combined: true
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    y_axes: [{label: "# Items (All Items)", orientation: top, series: [{axisId: Single
+              Item - 0 - users.count, id: Single Item - 0 - users.count, name: Single
+              Item}, {axisId: 2 Items - 1 - users.count, id: 2 Items - 1 - users.count,
+            name: 2 Items}, {axisId: 3+ Items - 2 - users.count, id: 3+ Items - 2
+              - users.count, name: 3+ Items}], showLabels: false, showValues: false,
+        unpinAxis: false, tickDensity: default, tickDensityCustom: 5, type: linear}]
+    x_axis_zoom: true
+    y_axis_zoom: true
+    hide_legend: false
+    series_colors:
+      2 Items - 1 - users.count: "#fad20d"
+      3+ Items - 2 - users.count: "#7CB342"
+    custom_color_enabled: true
+    show_single_value_title: true
+    show_comparison: true
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    single_value_title: Unique Users
+    comparison_label: ''
+    defaults_version: 1
+    hidden_pivots: {}
+    hidden_fields: []
+    note_state: collapsed
+    note_display: above
+    note_text: 'User Count by # Items (All items for these users)'
+    title_hidden: true
+    listen:
+      Priority Items Only Toggle: priority_item_filter_feature_support.priority_items_only_toggle
+      Created Date: order_items.created_at_date
+      Department: products.department
+      Category: products.category
+      Brand: products.brand
+      Product Name: products.name
+      User Revenue Rank Group (Lifetime): user_summary_unfiltered.user_revenue_rank_group
+      User Country: users.country
+      User State: users.state
+    row: 21
+    col: 0
+    width: 15
+    height: 4
+    tab_name: ''
+  filters:
+  - name: Priority Items Only Toggle
+    title: Priority Items Only Toggle
+    type: field_filter
+    default_value: AllItems
+    allow_multiple_values: true
+    required: false
+    ui_config:
+      type: radio_buttons
+      display: inline
+    model: advanced_ecomm
+    explore: advanced_example_ecommerce
+    listens_to_filters: []
+    field: priority_item_filter_feature_support.priority_items_only_toggle
+  - name: Created Date
+    title: Created Date
+    type: field_filter
+    default_value: 6 month ago for 6 month
+    allow_multiple_values: true
+    required: false
+    ui_config:
+      type: advanced
+      display: popover
+      options: []
+    model: advanced_ecomm
+    explore: advanced_example_ecommerce
+    listens_to_filters: []
+    field: order_items.created_at_date
+  - name: Department
+    title: Department
+    type: field_filter
+    default_value: Men,Women
+    allow_multiple_values: true
+    required: false
+    ui_config:
+      type: button_group
+      display: inline
+    model: advanced_ecomm
+    explore: advanced_example_ecommerce
+    listens_to_filters: []
+    field: products.department
+  - name: Category
+    title: Category
+    type: field_filter
+    default_value: ''
+    allow_multiple_values: true
+    required: false
+    ui_config:
+      type: tag_list
+      display: popover
+    model: advanced_ecomm
+    explore: advanced_example_ecommerce
+    listens_to_filters: []
+    field: products.category
+  - name: Brand
+    title: Brand
+    type: field_filter
+    default_value: ''
+    allow_multiple_values: true
+    required: false
+    ui_config:
+      type: advanced
+      display: popover
+    model: advanced_ecomm
+    explore: advanced_example_ecommerce
+    listens_to_filters: []
+    field: products.brand
+  - name: Product Name
+    title: Product Name
+    type: field_filter
+    default_value: ''
+    allow_multiple_values: true
+    required: false
+    ui_config:
+      type: tag_list
+      display: popover
+    model: advanced_ecomm
+    explore: advanced_example_ecommerce
+    listens_to_filters: [Category, Brand, Department]
+    field: products.name
+  - name: User Revenue Rank Group (Lifetime)
+    title: User Revenue Rank Group (Lifetime)
+    type: field_filter
+    default_value: Top 1000,"Bottom 25%","1st 25%","2nd 25%","3nd 25%"
+    allow_multiple_values: true
+    required: false
+    ui_config:
+      type: checkboxes
+      display: overflow
+    model: advanced_ecomm
+    explore: advanced_example_ecommerce
+    listens_to_filters: []
+    field: user_summary_unfiltered.user_revenue_rank_group
+  - name: User Country
+    title: User Country
+    type: field_filter
+    default_value: ''
+    allow_multiple_values: true
+    required: false
+    ui_config:
+      type: advanced
+      display: overflow
+    model: advanced_ecomm
+    explore: advanced_example_ecommerce
+    listens_to_filters: []
+    field: users.country
+  - name: User State
+    title: User State
+    type: field_filter
+    default_value: ''
+    allow_multiple_values: true
+    required: false
+    ui_config:
+      type: advanced
+      display: overflow
+    model: advanced_ecomm
+    explore: advanced_example_ecommerce
+    listens_to_filters: [User Country]
+    field: users.state
